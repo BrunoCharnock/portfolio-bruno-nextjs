@@ -160,8 +160,9 @@ body {
 
 /* Style the tab content */
 .tabcontent {
-  display: grid;
+  display: none;
   border-top: none;
+  transition: max-height 1s ease-in-out;
 }
 
 .wrapper {

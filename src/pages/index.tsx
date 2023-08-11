@@ -1,9 +1,26 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export async function getServerSideProps(context: any) {
+  const projetos = await fetch(
+    "https://api.github.com/users/BrunoCharnock/repos"
+  ).then((response) => {
+    return response.json();
+  });
+
+  return {
+    props: {
+      repos: projetos,
+      teste: 2,
+    },
+  };
+}
+
+export default function Home(props: any) {
+  console.log(props.repos);
   function SetTabOn(id: string) {
     // Declare all variables
     var i, tablinks;
@@ -61,70 +78,24 @@ export default function Home() {
       {/* Main */}
       <main className="flex-1 mb-4 grid">
         <div id="projetosTab" className="projects-container tabcontent">
-          {/* Item 1 */}
-          <div className="projects-container-item">
-            <div className="px-6 py-4">
-              <div className="projects-title">Clone-tabnews</div>
-              <p className="projects-description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
-              </p>
-            </div>
-            <div className="px-6 pt-4 pb-2">
-              <span className="projects-tag">#JavaScript</span>
-              <span className="projects-tag">#Html</span>
-              <span className="projects-tag">#Css</span>
-            </div>
-          </div>
-          {/* Item 1 */}
-          <div className="projects-container-item">
-            <div className="px-6 py-4">
-              <div className="projects-title">Clone-tabnews</div>
-              <p className="projects-description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
-              </p>
-            </div>
-            <div className="px-6 pt-4 pb-2">
-              <span className="projects-tag">#JavaScript</span>
-              <span className="projects-tag">#Html</span>
-              <span className="projects-tag">#Css</span>
-            </div>
-          </div>
-          {/* Item 1 */}
-          <div className="projects-container-item">
-            <div className="px-6 py-4">
-              <div className="projects-title">Clone-tabnews</div>
-              <p className="projects-description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
-              </p>
-            </div>
-            <div className="px-6 pt-4 pb-2">
-              <span className="projects-tag">#JavaScript</span>
-              <span className="projects-tag">#Html</span>
-              <span className="projects-tag">#Css</span>
-            </div>
-          </div>
-          {/* Item 1 */}
-          <div className="projects-container-item">
-            <div className="px-6 py-4">
-              <div className="projects-title">Clone-tabnews</div>
-              <p className="projects-description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
-              </p>
-            </div>
-            <div className="px-6 pt-4 pb-2">
-              <span className="projects-tag">#JavaScript</span>
-              <span className="projects-tag">#Html</span>
-              <span className="projects-tag">#Css</span>
-            </div>
-          </div>
+          {/* Itera sobre os repositórios públicos no perfil do GitHub */}
+          {props.repos.map((repo: any) => {
+            return (
+              <div className="projects-container-item">
+                <div className="px-6 py-4">
+                  <div className="projects-title">
+                    <a title={repo.name} href={repo.html_url} target="_blank">
+                      {repo.name}
+                    </a>
+                  </div>
+                  <p className="projects-description">{repo.description}</p>
+                </div>
+                <div className="px-6 pt-4 pb-2">
+                  <span className="projects-tag">{repo.language}</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         <div id="sobreTab" className="sobre-container tabcontent">

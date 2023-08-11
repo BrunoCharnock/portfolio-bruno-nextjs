@@ -26,23 +26,6 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-.float {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 40px;
-  right: 40px;
-  background-color: #0c9;
-  color: #fff;
-  border-radius: 50px;
-  text-align: center;
-  box-shadow: 2px 2px 3px #999;
-}
-
-.my-float {
-  margin-top: 22px;
-}
-
 .projects-container {
   display: grid;
   grid-template-columns: 24rem 24rem;
@@ -83,6 +66,10 @@ body {
   margin-bottom: 2%;
   margin-left: 10%;
   margin-right: 10%;
+}
+
+.contato-container h2 {
+  display: block;
 }
 
 .projects-container-item {
@@ -132,8 +119,10 @@ body {
 
 /* Style the tab */
 .tab {
+  vertical-align: bottom;
   overflow: hidden;
   border: 1px solid #ccc;
+  border-radius: 25px 25px 0px 0px;
   background-color: #f1f1f1;
 }
 
@@ -146,6 +135,7 @@ body {
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
+  text-decoration-color: black;
 }
 
 /* Change background color of buttons on hover */
@@ -171,7 +161,6 @@ body {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   background: rgb(255, 255, 255);
-  height: 80vh;
   width: auto;
   display: grid;
   place-items: center;

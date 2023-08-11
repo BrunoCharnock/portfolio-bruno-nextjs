@@ -81,7 +81,7 @@ export default function Home(props: any) {
           {/* Itera sobre os repositórios públicos no perfil do GitHub */}
           {props.repos.map((repo: any) => {
             return (
-              <div className="projects-container-item">
+              <div key={repo.id} className="projects-container-item">
                 <div className="px-6 py-4">
                   <div className="projects-title">
                     <a title={repo.name} href={repo.html_url} target="_blank">

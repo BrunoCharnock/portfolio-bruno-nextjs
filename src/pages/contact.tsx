@@ -6,34 +6,9 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Contact() {
   return (
     <div>
-      {/* Header */}
-      <header>
-        <div className="animate-pulse flex items-center justify-between bg-gray-900 flex-wrap p-6">
-          <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-            <div className="text-sm lg:flex-grow">
-              <a
-                href="/"
-                className="block mt-4 lg:inline-block lg:mt-0 text-purple-600 hover:text-white mr-4"
-              >
-                Início
-              </a>
-              <a
-                href="#responsive-header"
-                className="block mt-4 lg:inline-block lg:mt-0 text-purple-600 hover:text-white mr-4"
-              >
-                Sobre
-              </a>
-              <a
-                href="/contact"
-                className="block mt-4 lg:inline-block lg:mt-0 text-purple-600 hover:text-white"
-              >
-                Contato
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
-      {/* Fim Header */}
+      <div className="wrapper">
+        <div className="typing-demo">This is a typing demo.</div>
+      </div>
 
       {/* Main */}
       <main className="flex-1 mb-4 grid">

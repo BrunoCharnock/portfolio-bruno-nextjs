@@ -1,22 +1,41 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { EmailTemplate } from "../../components/email-template";
+import {
+  EmailTemplate,
+  EmailTemplateProps,
+} from "../../components/email-template";
 import { Resend } from "resend";
-import { CreateEmailOptions } from "resend/build/src/emails/interfaces";
+import {
+  CreateEmailOptions,
+  CreateEmailRequestOptions,
+} from "resend/build/src/emails/interfaces";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend("re_Asxqt8nY_HmPf9ZbB46bvQrUN3MXGu8o7");
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export const sendEmail = async (formData: EmailTemplateProps) => {
   try {
-    const body = req.body;
-    const data = await resend.emails.send({
-      from: "Acme <onboarding@resend.dev>",
-      to: ["delivered@resend.dev"],
-      subject: "Hello world",
-      react: EmailTemplate({ firstName: "John" }),
-    } as CreateEmailOptions);
+    const { name, email, message } = formData;
 
-    res.status(200).json(data);
-  } catch (error) {
-    res.status(400).json(error);
-  }
+    if (!message || typeof message !== "string") {
+      return {
+        erro: "Mensagem inválida.",
+      };
+    }
+
+    if (!email || typeof email !== "string") {
+      return {
+        erro: "Email inválido.",
+      };
+    }
+    debugger;
+    resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: " bruno.ccharnock@gmail.com",
+      subject: name + " entrou em contato via Web Portfólio",
+      react: EmailTemplate({ name: name, message: message, email: email }),
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    } as CreateEmailOptions);
+    console.log("passou");
+  } catch (error) {}
 };

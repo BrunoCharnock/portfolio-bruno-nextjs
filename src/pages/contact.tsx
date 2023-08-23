@@ -5,33 +5,60 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Contact() {
   return (
-    <div>
-      <div className="wrapper">
-        <div className="typing-demo">This is a typing demo.</div>
-      </div>
-
-      {/* Main */}
-      <main className="flex-1 mb-4 grid">
-        <div className="projects-container">
-          {/* Item 1 */}
-          <div className="projects-container-item">
-            <div className="px-6 py-4">
-              <div className="projects-title">Clone-tabnews</div>
-              <p className="projects-description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
-              </p>
-            </div>
-            <div className="px-6 pt-4 pb-2">
-              <span className="projects-tag">#JavaScript</span>
-              <span className="projects-tag">#Html</span>
-              <span className="projects-tag">#Css</span>
-            </div>
-          </div>
+    <div className="w-full max-w-xs">
+      <h2 className="text-black text-xl">
+        Você pode usar este formulário para entrar em contato comigo
+      </h2>
+      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="name"
+          >
+            Seu nome
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="name"
+            type="text"
+          ></input>
         </div>
-      </main>
-      {/* Fim Main */}
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="email"
+          >
+            Seu email
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="email"
+            type="text"
+          ></input>
+        </div>
+        <div className="mb-6">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="message"
+          >
+            Mensagem
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            id="message"
+            type="text"
+            placeholder="Digite sua mensagem"
+          ></input>
+        </div>
+        <div className="flex items-center justify-between">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button"
+          >
+            Enviar
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

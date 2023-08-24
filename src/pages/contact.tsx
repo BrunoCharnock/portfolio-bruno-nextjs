@@ -11,7 +11,7 @@ export default function Contact() {
 
   const sendEmail = async (formData: EmailTemplateProps) => {
     try {
-      const res = await fetch("../api/send", {
+      const res = await fetch("https://www.brunocharnock.com.br/api/send", {
         method: "POST",
         body: JSON.stringify(formData),
       }).catch((e) => console.log(e));

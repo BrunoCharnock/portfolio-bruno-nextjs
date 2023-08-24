@@ -42,12 +42,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       } as CreateEmailOptions)
       .then(function (response) {
         console.log(response);
-        res.status(200).end("Email enviado com sucesso!");
+        response !== null
+          ? res.status(200).end("Email enviado com sucesso!")
+          : res.status(500).end("Erro:" + response);
       })
-      .catch(function (err) {
-        res.status(200).end("Erro:" + err);
+      .catch(function (error) {
+        console.log(error);
+        res.status(500).end("Erro:" + error);
       });
   } catch (error) {
-    res.status(200).end("Erro:");
+    console.log(error);
+    res.status(500).end("Erro:" + error);
   }
 }

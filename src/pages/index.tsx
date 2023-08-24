@@ -2,6 +2,7 @@ import Image from "next/image";
 import Contact from "../pages/contact";
 import { Inter } from "next/font/google";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 

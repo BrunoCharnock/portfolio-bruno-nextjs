@@ -8,34 +8,38 @@ import {
   CreateEmailOptions,
   CreateEmailRequestOptions,
 } from "resend/build/src/emails/interfaces";
+import { NextResponse } from "next/server";
 
-const resend = new Resend("re_Asxqt8nY_HmPf9ZbB46bvQrUN3MXGu8o7");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const sendEmail = async (formData: EmailTemplateProps) => {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { name, email, message } = formData;
-
+    const { name, email, message } = JSON.parse(req.body);
+    console.log(email);
     if (!message || typeof message !== "string") {
-      return {
-        erro: "Mensagem inválida.",
-      };
+      return res.status(500).end("Mensagem inválida.");
+    }
+
+    if (!name || typeof name !== "string") {
+      return res.status(500).end("Nome inválido.");
     }
 
     if (!email || typeof email !== "string") {
-      return {
-        erro: "Email inválido.",
-      };
+      return res.status(500).end("Email inválido.");
     }
-    debugger;
+
     resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: " bruno.ccharnock@gmail.com",
+      from: "delivered@resend.dev",
+      to: "bruno.ccharnock@gmail.com",
       subject: name + " entrou em contato via Web Portfólio",
       react: EmailTemplate({ name: name, message: message, email: email }),
+      reply_to: [email],
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
     } as CreateEmailOptions);
-    console.log("passou");
-  } catch (error) {}
-};
+    res.status(200).end("Email enviado com sucesso!");
+  } catch (error) {
+    res.status(200).end("Erro:");
+  }
+}

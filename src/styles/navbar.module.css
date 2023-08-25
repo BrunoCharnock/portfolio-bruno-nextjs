@@ -52,6 +52,7 @@
 .navlogo {
   transform: scale(1);
   animation: pulseOut 0.25s ease-in-out both;
+  cursor: pointer;
 }
 .navlogo:hover {
   animation: pulseIn 0.25s ease-in-out both;

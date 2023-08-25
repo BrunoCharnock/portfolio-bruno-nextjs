@@ -7,14 +7,14 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <ul className={styles.navbarNav}>
         <li className={styles.navitem}>
-          <a href="/" className={styles.navlogo}>
-            <Image
-              priority
-              src={terminalIcon}
-              alt="logo terminal"
-              height={30}
-            />
-          </a>
+          <Image
+            className={styles.navlogo}
+            onClick={() => location.reload()}
+            priority
+            src={terminalIcon}
+            alt="logo terminal"
+            height={30}
+          />
         </li>
         <li className={styles.navitem}>
           <a href="#" className={styles.navlink}>

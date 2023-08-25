@@ -15,26 +15,27 @@ interface IProjectProps {
 
 export default function Projects(props: IProjectProps) {
   debugger;
-  const projetos: IProject = Object.entries(props);
   return (
-    <div>
-      {projetos.map((repo: any) => {
-        return (
-          <div key={repo.id} className="projects-container-item">
-            <div className="px-6 py-4">
-              <div className="projects-title">
-                <a title={repo.name} href={repo.html_url} target="_blank">
-                  {repo.name}
-                </a>
+    <>
+      {/*<div>
+        {projetos.map((repo: any) => {
+          return (
+            <div key={repo.id} className="projects-container-item">
+              <div className="px-6 py-4">
+                <div className="projects-title">
+                  <a title={repo.name} href={repo.html_url} target="_blank">
+                    {repo.name}
+                  </a>
+                </div>
+                <p className="projects-description">{repo.description}</p>
               </div>
-              <p className="projects-description">{repo.description}</p>
+              <div className="px-6 pt-4 pb-2">
+                <span className="projects-tag">{repo.language}</span>
+              </div>
             </div>
-            <div className="px-6 pt-4 pb-2">
-              <span className="projects-tag">{repo.language}</span>
-            </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>*/}
+    </>
   );
 }

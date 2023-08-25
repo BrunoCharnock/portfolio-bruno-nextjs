@@ -1,0 +1,70 @@
+.landingpage {
+  height: 90vh;
+  display: flex;
+  margin-top: 20vh;
+}
+
+.introduction {
+  font-size: 25px;
+  color: #8f33ff;
+  animation: fadeInLanding 0.75s ease-in both;
+}
+
+.name {
+  font-size: 70px;
+  color: rgb(199, 199, 199);
+  animation: fadeInLanding 0.75s ease-in both;
+}
+
+.statement {
+  font-size: medium;
+}
+
+.description {
+  font-size: small;
+}
+
+@keyframes fadeInLanding {
+  from {
+    opacity: 0;
+    transform: translate3d(-20%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeOutLanding {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-20%, 0, 0);
+  }
+}
+
+.typingdemo {
+  color: gray;
+  width: 23ch;
+  animation: typing 2s steps(23), blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 2em;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}

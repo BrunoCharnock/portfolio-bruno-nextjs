@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_2" data-name="Camada 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 76.78 44.05">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#_Áåçûìÿííûé_ãðàäèåíò_33);
+        stroke-width: 0px;
+      }
+    </style>
+    <linearGradient id="_Áåçûìÿííûé_ãðàäèåíò_33" data-name="Áåçûìÿííûé ãðàäèåíò 33" x1="0" y1="22.02" x2="76.78" y2="22.02" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e39a65"/>
+      <stop offset="1" stop-color="#e95f8d"/>
+    </linearGradient>
+  </defs>
+  <g id="_Ñëîé_1" data-name="Ñëîé 1">
+    <path id="base_café" data-name="base café" class="cls-1" d="m38.39,44.05c-2.7,0-5.4-.7-7.81-2.09h0L1.98,25.45c-1.24-.72-1.98-2-1.98-3.43s.74-2.71,1.98-3.43L30.57,2.09c4.82-2.78,10.81-2.78,15.63,0l28.59,16.51c1.24.72,1.98,2,1.98,3.43s-.74,2.71-1.98,3.43l-28.59,16.51c-2.41,1.39-5.11,2.09-7.81,2.09Zm-6.88-3.7c4.25,2.45,9.52,2.45,13.77,0l28.59-16.51c.66-.38,1.05-1.06,1.05-1.82s-.39-1.44-1.05-1.82L45.27,3.7c-4.25-2.45-9.52-2.45-13.77,0L2.91,20.21c-.66.38-1.05,1.06-1.05,1.82s.39,1.44,1.05,1.82l28.59,16.51Z"/>
+  </g>
+</svg>

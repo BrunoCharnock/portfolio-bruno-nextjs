@@ -1,113 +1,42 @@
-import Image from "next/image";
-import Contact from "../pages/contact";
+import Contact from "@/pages/contact";
+import About from "@/pages/about";
+import Navbar from "@/pages/navbar";
+import LandingPage from "@/pages/landingpage";
 import { Inter } from "next/font/google";
-import { useState } from "react";
-import { toast } from "react-toastify";
-
+import { useEffect, useRef } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export async function getServerSideProps(context: any) {
-  const projetos = await fetch(
-    "https://api.github.com/users/BrunoCharnock/repos"
-  ).then((response) => {
-    return response.json();
-  });
-
-  return {
-    props: {
-      repos: projetos,
-      teste: 2,
-    },
-  };
+  const res = await fetch("https://api.github.com/users/BrunoCharnock/repos");
+  const repo = await res.json();
+  return { props: { repo } };
 }
 
 export default function Home(props: any) {
-  function SetTabOn(id: string) {
-    // Declare all variables
-    var i, tablinks;
-    // Get all elements with class="tabcontent" and hide them
-    var tabcontent = Array.from(
-      document.getElementsByClassName(
-        "tabcontent"
-      ) as HTMLCollectionOf<HTMLElement>
-    );
-    tabcontent.forEach((tab) => {
-      var tablink = document.getElementById(tab.id + "link") as HTMLElement;
-      if (tab.id === id) {
-        tab.style.display = "grid";
-        tablink.className = "tablinks active text-white";
-      } else {
-        tab.style.display = "none";
-        tablink.className = "tablinks text-black";
-      }
+  const myRef = useRef();
+  useEffect(() => {
+    console.log(myRef.current);
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      console.log("entrry", entry);
     });
-  }
-
+  }, []);
   return (
     <>
-      <div className="wrapper">
-        <div className="typing-demo">
-          Olá, me chamo Bruno e sou Desenvolvedor.
-        </div>
-        <div className="tab">
-          <button
-            id="projetosTablink"
-            className="tablinks"
-            onClick={() => SetTabOn("projetosTab")}
-          >
-            Projetos
-          </button>
-          <button
-            id="sobreTablink"
-            className="tablinks"
-            onClick={() => SetTabOn("sobreTab")}
-          >
-            Sobre
-          </button>
-          <button
-            id="contatoTablink"
-            className="tablinks"
-            onClick={() => SetTabOn("contatoTab")}
-          >
-            Contato
-          </button>
-        </div>
-      </div>
-
-      {/* Main */}
-      <main className="flex-1 mb-4 grid">
-        <div id="projetosTab" className="projects-container tabcontent">
-          {/* Itera sobre os repositórios públicos no perfil do GitHub */}
-          {props.repos.map((repo: any) => {
-            return (
-              <div key={repo.id} className="projects-container-item">
-                <div className="px-6 py-4">
-                  <div className="projects-title">
-                    <a title={repo.name} href={repo.html_url} target="_blank">
-                      {repo.name}
-                    </a>
-                  </div>
-                  <p className="projects-description">{repo.description}</p>
-                </div>
-                <div className="px-6 pt-4 pb-2">
-                  <span className="projects-tag">{repo.language}</span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div id="sobreTab" className="sobre-container tabcontent">
-          <div>
-            <h2 className="text-black text-center">SOBRE MIM</h2>
-          </div>
-        </div>
-
-        <div id="contatoTab" className="contato-container tabcontent">
+      <Navbar />
+      <div className="body">
+        <div className="wrapper">
+          <LandingPage />
           <Contact />
+          <About />
         </div>
-      </main>
-      {/* Fim Main */}
+        {/*
+        <div id="projetosTab" className="projects-container tabcontent">
+          <Projects project={props.repo} />
+        </div>
+
+       Fim Main */}
+      </div>
     </>
   );
 }

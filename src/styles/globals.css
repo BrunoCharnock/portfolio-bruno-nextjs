@@ -3,27 +3,71 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 255, 255, 255;
-    --background-end-rgb: 255, 255, 255;
-  }
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  margin: 0;
+  padding: 0;
+  background-color: #1b0338;
+  width: 100vw;
+  height: 110vh;
+}
+
+body::-webkit-scrollbar {
+  width: 0.4rem;
+}
+body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0);
+}
+body::-webkit-scrollbar-thumb {
+  background: rgb(77, 77, 77);
+  border-radius: 99999px;
+}
+
+.show-text {
+  color: white;
+  animation: fadeIn 0.75s ease-in both;
+}
+.hidden-text {
+  opacity: 0;
+  color: white;
+  animation: fadeOut 0.75s ease-in both;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(-20%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-20%, 0, 0);
+  }
+}
+
+.wrapper {
+  padding-top: 4rem;
+  --tw-shadow: 0 10px 25px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .projects-container {
@@ -40,12 +84,9 @@ body {
   margin-right: 10%;
 }
 
-.sobre-container {
-  display: grid;
-  grid-template-columns: 24rem;
-  grid-auto-rows: auto;
-  justify-content: center;
-  gap: 30px;
+.about-container {
+  display: flex;
+  align-items: center;
 
   width: auto;
   margin-top: 2%;
@@ -54,22 +95,16 @@ body {
   margin-right: 10%;
 }
 
-.contato-container {
-  display: grid;
-  grid-template-columns: 24rem;
-  grid-auto-rows: auto;
+.contact-container {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 30px;
 
   width: auto;
   margin-top: 2%;
   margin-bottom: 2%;
   margin-left: 10%;
   margin-right: 10%;
-}
-
-.contato-container h2 {
-  display: block;
 }
 
 .projects-container-item {
@@ -115,76 +150,4 @@ body {
 
   color: black;
   background-color: #e5e7eb;
-}
-
-/* Style the tab */
-.tab {
-  vertical-align: bottom;
-  overflow: hidden;
-  border: 1px solid #ccc;
-  border-radius: 25px 25px 0px 0px;
-  background-color: #f1f1f1;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  text-decoration-color: black;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #383535;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  border-top: none;
-  transition: max-height 1s ease-in-out;
-}
-
-.wrapper {
-  --tw-shadow: 0 10px 25px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  background: rgb(255, 255, 255);
-  width: auto;
-  display: grid;
-  place-items: center;
-}
-
-.typing-demo {
-  color: black;
-  width: 40ch;
-  animation: typing 2s steps(40), blink 0.5s step-end infinite alternate;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid;
-  font-family: monospace;
-  font-size: 2em;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-}
-
-@keyframes blink {
-  50% {
-    border-color: transparent;
-  }
 }

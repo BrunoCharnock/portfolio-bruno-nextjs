@@ -1,0 +1,111 @@
+.navbar {
+  font-size: large;
+  width: 100vw;
+  position: fixed;
+}
+
+.navbarNav {
+  list-style: none;
+  width: 100%;
+  height: 4rem;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navitem {
+  margin-right: 50px;
+  opacity: 1;
+  animation: fadeInNav 0.75s ease-in both;
+  display: flex;
+}
+
+@keyframes fadeInNav {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeOutNav {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-20%, 0, 0);
+  }
+}
+
+.navitem:first-child {
+  margin-left: 50px;
+  margin-right: auto;
+}
+
+.navlogo {
+  transform: scale(1);
+  animation: pulseOut 0.25s ease-in-out both;
+}
+.navlogo:hover {
+  animation: pulseIn 0.25s ease-in-out both;
+}
+
+@keyframes pulseIn {
+  from {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  to {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes pulseOut {
+  from {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  to {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+.navlink {
+  padding: 5px 5px 5px 5px;
+  color: rgba(255, 255, 255, 0.815);
+  align-items: center;
+}
+
+.navlink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.1em;
+  background-color: #8f33ff;
+  opacity: 1;
+  transition: opacity 300ms, transform 300ms;
+  transform: scale(0);
+  transform-origin: center;
+}
+
+.navlink:hover::after,
+.navlink:focus::after {
+  transform: scale(1.25);
+}
+
+.linktext {
+  color: white;
+  display: flex;
+  align-items: center;
+}

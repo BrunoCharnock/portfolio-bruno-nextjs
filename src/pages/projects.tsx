@@ -42,7 +42,7 @@ export default function Projects(props: any) {
 
   return (
     <>
-      <div id="projetosTab" className={styles.projectscontainer}>
+      <section id="projetosTab" className={styles.projectscontainer}>
         {projects.map((repo: any) => {
           return (
             <div
@@ -68,7 +68,7 @@ export default function Projects(props: any) {
             </div>
           );
         })}
-      </div>
+      </section>
     </>
   );
 }

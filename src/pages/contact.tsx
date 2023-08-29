@@ -49,7 +49,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="contact-container">
+    <section className="contact-container">
       <div className="w-full max-w-xs">
         <h2 className="text-white text-xl">
           Você pode usar este formulário para entrar em contato comigo
@@ -101,6 +101,6 @@ export default function Contact() {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 }

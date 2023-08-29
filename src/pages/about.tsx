@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import styles from "@/styles/about.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -8,12 +9,22 @@ export default function Contact() {
   const { ref, inView, entry } = useInView();
 
   return (
-    <div className="about-container">
-      <div className="w-full max-w-xs">
-        <h2 ref={ref} className={inView ? "show-text" : "hidden-text"}>
-          Você pode usar este formulário para entrar em contato comigo
-        </h2>
+    <section id="about" className={styles.aboutcontainer}>
+      <h2 className={styles.aboutheading}>Sobre mim.</h2>
+      <div className={styles.inner}>
+        <div>
+          <p ref={ref} className={inView ? styles.about : styles.about}>
+            TEXTO PLACEHOLDER
+          </p>
+          <ul className={styles.listSkills}>
+            <li>Typescript</li>
+            <li>C#</li>
+            <li>.Net Framework</li>
+            <li>SQL</li>
+          </ul>
+          <div className={styles.content}>TESTE</div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

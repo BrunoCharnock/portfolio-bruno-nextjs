@@ -1,0 +1,39 @@
+.aboutsection {
+  margin: 100px 0px;
+  display: block;
+}
+
+.aboutheading {
+  color: aliceblue;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 10px 0px 40px;
+  width: 100%;
+  font-size: 30px;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 50px;
+  align-content: center;
+}
+
+.about {
+  color: gray;
+  max-width: 3fr;
+}
+
+.content {
+  color: green;
+  max-width: 2fr;
+}
+
+.listSkills {
+  width: 100%;
+  color: white;
+  display: grid;
+  grid-template-columns: 10rem 10rem;
+  justify-content: center;
+}

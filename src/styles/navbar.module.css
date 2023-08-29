@@ -1,12 +1,31 @@
+@media (max-width: 600px) {
+  .navitem:first-child {
+    display: none;
+  }
+
+  .navbarNav {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 600px) {
+}
+
+@media (min-width: 900px) {
+}
+
 .navbar {
   font-size: large;
   width: 100vw;
   position: fixed;
+  display: flex;
+  align-items: center;
 }
 
 .navbarNav {
   list-style: none;
-  width: 100%;
+  width: 100vw;
   height: 4rem;
   padding: 0;
   margin: 0;
@@ -16,10 +35,20 @@
 }
 
 .navitem {
-  margin-right: 50px;
+  padding: 10px;
   opacity: 1;
-  animation: fadeInNav 0.75s ease-in both;
   display: flex;
+  animation: fadeInNav 0.3s ease-in both;
+}
+
+.navitem:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.navitem:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.navitem:nth-child(4) {
+  animation-delay: 0.3s;
 }
 
 @keyframes fadeInNav {
@@ -45,7 +74,6 @@
 }
 
 .navitem:first-child {
-  margin-left: 50px;
   margin-right: auto;
 }
 

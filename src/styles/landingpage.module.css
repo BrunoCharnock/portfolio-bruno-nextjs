@@ -1,3 +1,9 @@
+@media (min-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .landingpage {
   height: 90vh;
   display: flex;
@@ -5,13 +11,14 @@
 }
 
 .introduction {
-  font-size: 25px;
+  font-size: 1.8rem;
   color: #8f33ff;
   animation: fadeInLanding 0.75s ease-in both;
 }
 
 .name {
-  font-size: 70px;
+  line-height: 3.5rem;
+  font-size: 4.5rem;
   color: rgb(199, 199, 199);
   animation: fadeInLanding 0.75s ease-in both;
 }
@@ -21,7 +28,14 @@
 }
 
 .description {
-  font-size: small;
+  max-width: 500px;
+  font-size: medium;
+  color: gray;
+}
+
+.joblink {
+  color: #8f33ff;
+  animation: fadeInLanding 0.75s ease-in both;
 }
 
 @keyframes fadeInLanding {

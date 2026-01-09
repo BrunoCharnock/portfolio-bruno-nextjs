@@ -1,39 +1,227 @@
-.aboutsection {
-  margin: 100px 0px;
-  display: block;
-}
-
-.aboutheading {
-  color: aliceblue;
+/* About Section */
+.aboutSection {
+  min-height: 100vh;
   display: flex;
   align-items: center;
+  padding: 6rem 0;
   position: relative;
-  margin: 10px 0px 40px;
+}
+
+/* Container */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
   width: 100%;
-  font-size: 30px;
 }
 
-.inner {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 50px;
-  align-content: center;
+@media (min-width: 768px) {
+  .container {
+    padding: 0 3rem;
+  }
 }
 
-.about {
-  color: gray;
-  max-width: 3fr;
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 6rem;
+  }
 }
 
-.content {
-  color: green;
-  max-width: 2fr;
+/* Heading */
+.headingWrapper {
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-.listSkills {
-  width: 100%;
+.headingWrapper.fadeIn {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: 700;
   color: white;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, rgb(255, 255, 255), rgb(147, 197, 253));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    font-size: 3rem;
+  }
+}
+
+.headingLine {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(to right, rgb(59, 130, 246), rgb(168, 85, 247));
+  border-radius: 9999px;
+}
+
+/* Content Grid */
+.contentGrid {
   display: grid;
-  grid-template-columns: 10rem 10rem;
-  justify-content: center;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+  }
+}
+
+/* Text Content */
+.textContent {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.textContent.slideInLeft {
+  animation: slideInLeft 0.8s ease forwards 0.2s;
+}
+
+.paragraph {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: rgb(148, 163, 184);
+  margin-bottom: 1.5rem;
+}
+
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.highlight {
+  color: rgb(96, 165, 250);
+  font-weight: 600;
+  position: relative;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, rgb(59, 130, 246), rgb(168, 85, 247));
+  opacity: 0.5;
+}
+
+/* Skills Container */
+.skillsContainer {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.skillsContainer.slideInRight {
+  animation: slideInRight 0.8s ease forwards 0.2s;
+}
+
+.skillsHeading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgb(226, 232, 240);
+  margin-bottom: 1.5rem;
+}
+
+/* Skills Sections */
+.skillsSections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Skill Section */
+.skillSection {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.skillSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, rgb(59, 130, 246), rgb(168, 85, 247));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.skillSection:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(96, 165, 250, 0.3);
+  transform: translateY(-4px);
+}
+
+.skillSection:hover::before {
+  transform: scaleX(1);
+}
+
+.categoryLabel {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgb(96, 165, 250);
+  margin-bottom: 0.75rem;
+}
+
+.technologiesList {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgb(203, 213, 225);
+  margin: 0;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

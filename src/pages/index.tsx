@@ -2,6 +2,7 @@ import Contact from "@/pages/contact";
 import About from "@/pages/about";
 import Navbar from "@/pages/navbar";
 import LandingPage from "@/pages/landingpage";
+import Footer from "@/pages/footer";
 import { Inter } from "next/font/google";
 import { useEffect, useRef } from "react";
 import Projects from "./projects";
@@ -18,6 +19,7 @@ export default function Home(props: any) {
           <Projects />
           <Contact />
         </div>
+        <Footer />
       </div>
     </>
   );

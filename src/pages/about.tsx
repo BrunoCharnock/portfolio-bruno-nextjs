@@ -10,19 +10,19 @@ export default function About() {
   const skillSections = [
     {
       category: "Front-end",
-      technologies: "JavaScript, TypeScript, React, Next.js, Angular, HTML5, CSS3, Tailwind CSS"
+      technologies: "HTML5, CSS3, SCSS, JavaScript (ES6+), TypeScript, Angular, React, Next.js, Tailwind CSS."
     },
     {
       category: "Back-end",
-      technologies: "C#, .NET Framework, .NET Core, Node.js, ASP.NET, RESTful APIs"
+      technologies: "C#, .NET Framework, .NET Core / .NET, ASP.NET Core (Web API), Entity Framework, Entity Framework Core, APIs REST, microsserviços, integração entre sistemas."
     },
     {
       category: "Database",
-      technologies: "SQL Server, MySQL, PostgreSQL, MongoDB, Entity Framework"
+      technologies: "SQL Server, PostgreSQL, MySQL, modelagem de dados, consultas e otimização SQL."
     },
     {
       category: "Tools & Others",
-      technologies: "Git, Docker, Azure, Visual Studio, VS Code, Postman, Jira"
+      technologies: "Git, GitLab, Docker, Linux, Nginx, Cloudflare, homelab (self-hosting, automação e serviços), Swagger / OpenAPI, Jira, Postman, integração e consumo de APIs, clean code e boas práticas."
     }
   ];
 
@@ -40,20 +40,28 @@ export default function About() {
           {/* Text Content */}
           <div className={`${styles.textContent} ${inView ? styles.slideInLeft : ''}`}>
             <p className={styles.paragraph}>
-              Olá! Sou um desenvolvedor apaixonado por criar soluções que fazem a diferença. 
-              Minha jornada na programação começou quando descobri que poderia transformar 
-              ideias em realidade através do código.
+              Olá! Sou desenvolvedor de software com foco em .NET e experiência prática na construção e evolução de sistemas 
+              utilizados em produção. Gosto de trabalhar em soluções que resolvem problemas reais, sempre priorizando 
+              código limpo, arquitetura bem pensada e impacto concreto para os usuários.
             </p>
             <p className={styles.paragraph}>
-              Atualmente trabalho na <span className={styles.highlight}>Teleperformance</span>, 
-              onde desenvolvo aplicações .NET que impactam milhares de usuários. Adoro os 
-              desafios de trabalhar com sistemas escaláveis e a satisfação de ver um projeto 
-              bem arquitetado funcionando perfeitamente.
+              Minha jornada na programação começou a partir do interesse em modificar e desenvolver jogos, o que me levou a cursar 
+              Game Design. Foi nesse processo que descobri que o desenvolvimento de software ia muito além dos jogos — e que 
+              criar sistemas bem estruturados, escaláveis e eficientes era algo que me motivava de verdade.
             </p>
             <p className={styles.paragraph}>
-              Quando não estou codando, gosto de me manter atualizado com as últimas 
-              tecnologias, contribuir com a comunidade dev e explorar novas formas de 
-              resolver problemas complexos de maneira elegante.
+              Atualmente atuo na <span className={styles.highlight}>Teleperformance</span>, 
+              desenvolvendo e mantendo aplicações .NET utilizadas por milhares de usuários. 
+              Trabalho tanto na criação de novas funcionalidades quanto na manutenção e
+               modernização de sistemas legados, além de integrações via APIs e participação 
+               em decisões técnicas voltadas à escalabilidade, desempenho e facilidade de manutenção.
+            </p>
+            <p className={styles.paragraph}>
+              Sou entusiasta de tecnologia e gosto de entender como as coisas funcionam por trás dos 
+              panos. Por isso, além do desenvolvimento profissional, me interesso por infraestrutura, 
+              automação e experimentações em homelab, sempre buscando aprofundar meu conhecimento 
+              técnico e aplicar boas práticas que tornem o software mais confiável e sustentável ao 
+              longo do tempo.
             </p>
           </div>
 

@@ -40,17 +40,17 @@ export default function LandingPage() {
 
           {/* Description */}
           <p className={styles.description}>
-            Sou um desenvolvedor .NET full-time, focado em criar soluções
-            escaláveis e eficientes para problemas reais, trabalhando atualmente em{' '}
+            Desenvolvedor .NET apaixonado por engenharia de software e desafios reais.
+             Com forte domínio de C#, .NET Core, APIs e padrões de arquitetura, atuo na{' '}
             <a
               href="https://www.teleperformance.com/pt-br/locations/brazil-site/brasil/"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.joblink}
             >
-              Teleperformance
-            </a>
-            .
+            Teleperformance 
+            </a>{' '}
+            construindo soluções escaláveis e eficientes que facilitam a vida das pessoas e das empresas.
           </p>
 
           {/* CTA Buttons */}

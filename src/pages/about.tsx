@@ -18,7 +18,7 @@ export default function About() {
     },
     {
       category: "Database",
-      technologies: "SQL Server, PostgreSQL, MySQL, modelagem de dados, consultas e otimização SQL."
+      technologies: "SQL Server, modelagem de dados, consultas e otimização SQL."
     },
     {
       category: "Tools & Others",

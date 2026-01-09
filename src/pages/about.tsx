@@ -46,7 +46,7 @@ export default function About() {
             </p>
             <p className={styles.paragraph}>
               Minha jornada na programação começou a partir do interesse em modificar e desenvolver jogos, o que me levou a cursar 
-              Game Design. Foi nesse processo que descobri que o desenvolvimento de software ia muito além dos jogos — e que 
+              Game Design. Foi nesse processo que descobri que o desenvolvimento de software ia muito além dos jogos e que 
               criar sistemas bem estruturados, escaláveis e eficientes era algo que me motivava de verdade.
             </p>
             <p className={styles.paragraph}>

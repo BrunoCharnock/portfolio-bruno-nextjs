@@ -18,13 +18,18 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleLogoClick = () => {
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0; // Para Safari
+  };
+
   return (
     <nav className={`${styles.navbar} ${scrolled ? styles.navbarScrolled : styles.navbarTransparent}`}>
       <div className={styles.container}>
         <ul className={styles.navbarNav}>
           {/* Logo */}
           <li className={`${styles.navitem} ${styles.logoItem} ${isVisible ? styles.navitemVisible : ''}`}>
-            <div className={styles.logoContainer} onClick={() => location.reload()}>
+            <div className={styles.logoContainer} onClick={handleLogoClick}>
               <div className={styles.logoGlow}></div>
               <div className={styles.logoWrapper}>
                 <Image

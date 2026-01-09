@@ -55,12 +55,12 @@ export default function LandingPage() {
 
           {/* CTA Buttons */}
           <div className={styles.ctaButtons}>
-            <button className={styles.btnPrimary}>
+            <a href="#projetos" className={styles.btnPrimary}>
               Ver Projetos
-            </button>
-            <button className={styles.btnSecondary}>
+            </a>
+            <a href="#contato" className={styles.btnSecondary}>
               Entre em Contato
-            </button>
+            </a>
           </div>
         </div>
       </div>

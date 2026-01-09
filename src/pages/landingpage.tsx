@@ -1,25 +1,75 @@
-import styles from "@/styles/landingpage.module.css";
+import { useEffect, useState } from 'react';
+import styles from '@/styles/landingpage.module.css';
 
 export default function LandingPage() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
     <section className={styles.landingpage}>
-      <div className="ladingpage-text-container ">
-        <h6 className={styles.introduction}>Olá, me chamo</h6>
-        <h1 className={styles.name}>Bruno Charnock</h1>
-        <h2 className={styles.typingdemo}>Eu desenvolvo soluções.</h2>
-        <p className={styles.description}>
-          Sou um desenvolvedor .Net full-time, focado em criar soluções
-          escaláveis e eficientes para problemas reais, trabalhando atualmente
-          em{" "}
-          <a
-            className={styles.joblink}
-            href="https://www.teleperformance.com/pt-br/locations/brazil-site/brasil/"
-            target="/blank"
-          >
-            Teleperformance
-          </a>{" "}
-          .
-        </p>
+      <div className={styles.container}>
+        <div className={`${styles.content} ${isVisible ? styles.contentVisible : styles.contentHidden}`}>
+          
+          {/* Introduction tag */}
+          <div className={styles.introductionTag}>
+            <div className={styles.pulseDot}></div>
+            <span className={styles.introduction}>Olá, me chamo</span>
+          </div>
+
+          {/* Name with gradient */}
+          <h1 className={styles.name}>
+            Bruno Charnock
+          </h1>
+
+          {/* Typing effect subtitle */}
+          <div className={styles.subtitleContainer}>
+            <h2 className={styles.typingdemo}>
+              Eu desenvolvo{' '}
+              <span className={styles.highlight}>
+                <span className={styles.highlightText}>
+                  soluções
+                </span>
+                <span className={styles.highlightUnderline}></span>
+              </span>
+              .
+            </h2>
+          </div>
+
+          {/* Description */}
+          <p className={styles.description}>
+            Sou um desenvolvedor .NET full-time, focado em criar soluções
+            escaláveis e eficientes para problemas reais, trabalhando atualmente em{' '}
+            <a
+              href="https://www.teleperformance.com/pt-br/locations/brazil-site/brasil/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.joblink}
+            >
+              Teleperformance
+            </a>
+            .
+          </p>
+
+          {/* CTA Buttons */}
+          <div className={styles.ctaButtons}>
+            <button className={styles.btnPrimary}>
+              Ver Projetos
+            </button>
+            <button className={styles.btnSecondary}>
+              Entre em Contato
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className={styles.scrollIndicator}>
+        <div className={styles.scrollMouse}>
+          <div className={styles.scrollWheel}></div>
+        </div>
       </div>
     </section>
   );

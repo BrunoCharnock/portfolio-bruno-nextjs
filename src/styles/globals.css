@@ -10,12 +10,12 @@
 
 /* Remove scrollbars completamente */
 * {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 *::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari, Opera */
+  display: none;
 }
 
 html, body {
@@ -42,62 +42,81 @@ body {
   background-attachment: fixed;
   width: 100vw;
   height: 110vh;
+  position: relative;
 }
 
-/* Background animated elements */
+/* Background animated glows - INTENSIDADE AUMENTADA */
 body::before {
   content: '';
   position: fixed;
-  top: -50%;
-  left: -25%;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  top: -20%;
+  left: -15%;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(
+    circle, 
+    rgba(59, 130, 246, 0.3) 0%, 
+    rgba(59, 130, 246, 0.15) 35%,
+    transparent 70%
+  );
   border-radius: 50%;
-  animation: float 20s ease-in-out infinite;
+  filter: blur(80px);
+  animation: floatGlow1 20s ease-in-out infinite;
   z-index: 0;
+  pointer-events: none;
 }
 
 body::after {
   content: '';
   position: fixed;
-  bottom: -50%;
-  right: -25%;
-  width: 900px;
-  height: 900px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+  bottom: -20%;
+  right: -15%;
+  width: 1000px;
+  height: 1000px;
+  background: radial-gradient(
+    circle, 
+    rgba(168, 85, 247, 0.3) 0%, 
+    rgba(168, 85, 247, 0.15) 35%,
+    transparent 70%
+  );
   border-radius: 50%;
-  animation: float 25s ease-in-out infinite reverse;
+  filter: blur(80px);
+  animation: floatGlow2 25s ease-in-out infinite;
   z-index: 0;
+  pointer-events: none;
 }
 
-/* Grid pattern overlay */
-body {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-/* Grid pattern overlay */
-body {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-@keyframes float {
+@keyframes floatGlow1 {
   0%, 100% {
     transform: translate(0, 0) scale(1);
-    opacity: 0.15;
+    opacity: 1;
   }
-  50% {
-    transform: translate(30px, 30px) scale(1.1);
-    opacity: 0.25;
+  33% {
+    transform: translate(80px, 120px) scale(1.15);
+    opacity: 0.85;
+  }
+  66% {
+    transform: translate(-40px, 60px) scale(0.95);
+    opacity: 0.9;
   }
 }
 
+@keyframes floatGlow2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  33% {
+    transform: translate(-100px, -70px) scale(1.2);
+    opacity: 0.85;
+  }
+  66% {
+    transform: translate(50px, -100px) scale(0.9);
+    opacity: 0.9;
+  }
+}
+
+/* Animations */
 .show-text {
   color: white;
   animation: fadeIn 0.75s ease-in both;
@@ -131,6 +150,7 @@ body {
   }
 }
 
+/* Wrapper */
 .wrapper {
   padding-top: 4rem;
   position: relative;

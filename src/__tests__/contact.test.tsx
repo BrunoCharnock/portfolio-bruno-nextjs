@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Contact from '../contact';
+import Contact from '../pages/contact';
 import { toast } from 'react-toastify';
 import '@testing-library/jest-dom';
 

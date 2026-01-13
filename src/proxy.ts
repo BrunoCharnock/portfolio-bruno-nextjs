@@ -12,7 +12,7 @@ const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hora em milissegundos
 // Limpa entradas antigas a cada 5 minutos para evitar memory leak
 setInterval(() => {
   const now = Date.now();
-  for (const [ip, data] of rateLimitMap.entries()) {
+  for (const [ip, data] of Array.from(rateLimitMap.entries())) {
     if (now > data.resetTime) {
       rateLimitMap.delete(ip);
     }
@@ -23,10 +23,11 @@ export function proxy(request: NextRequest) {
   // Aplicar rate limiting apenas para /api/send
   if (request.nextUrl.pathname === '/api/send') {
     // Obter IP do cliente
-    const ip = request.ip ||
-               request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
-               request.headers.get('x-real-ip') ||
-               'unknown';
+    const forwardedFor = request.headers.get('x-forwarded-for');
+    const ip =
+      forwardedFor?.split(',')[0]?.trim() ||
+      request.headers.get('x-real-ip') ||
+      'unknown';
 
     const now = Date.now();
     const userLimit = rateLimitMap.get(ip);

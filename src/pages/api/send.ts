@@ -95,7 +95,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const response = await resend.emails.send({
-      from: "delivered@resend.dev",
+      from: process.env.EMAIL_FROM || "onboarding@resend.dev",
       to: process.env.CONTACT_EMAIL || "bruno.ccharnock@gmail.com",
       subject: `${sanitizedName} entrou em contato via Web Portfólio`,
       react: EmailTemplate({
@@ -103,7 +103,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         message: trimmedMessage,
         email: normalizedEmail
       }),
-      replyTo: [normalizedEmail],
     });
 
     if (response && response.data && response.data.id) {

@@ -12,9 +12,40 @@ interface IProject {
   forks_count: number;
 }
 
+// Função para sanitizar strings e prevenir XSS
+function sanitizeString(str: string | null | undefined): string {
+  if (!str) return '';
+
+  return str
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+    .replace(/\//g, '&#x2F;')
+    .trim();
+}
+
+// Função para validar estrutura de um repositório
+function isValidRepository(obj: any): obj is IProject {
+  return (
+    obj &&
+    typeof obj === 'object' &&
+    typeof obj.id === 'number' &&
+    typeof obj.name === 'string' &&
+    typeof obj.html_url === 'string' &&
+    (obj.description === null || typeof obj.description === 'string') &&
+    (obj.language === null || typeof obj.language === 'string') &&
+    typeof obj.stargazers_count === 'number' &&
+    typeof obj.forks_count === 'number' &&
+    // Validar formato de URL
+    obj.html_url.startsWith('https://github.com/')
+  );
+}
+
 export default function Projects() {
   const [projects, setProjects] = useState<IProject[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true
@@ -23,10 +54,47 @@ export default function Projects() {
   const fetchUserData = async () => {
     try {
       const response = await fetch("https://api.github.com/users/BrunoCharnock/repos");
+
+      // Validar status HTTP
+      if (!response.ok) {
+        throw new Error(`GitHub API retornou status ${response.status}`);
+      }
+
       const data = await response.json();
-      setProjects(data);
+
+      // Validar que é um array
+      if (!Array.isArray(data)) {
+        throw new Error('Resposta da API não é um array');
+      }
+
+      // Filtrar e validar repositórios
+      const validRepos = data
+        .filter((repo): repo is IProject => {
+          if (!isValidRepository(repo)) {
+            console.warn('Repositório com estrutura inválida ignorado:', repo?.name || 'unknown');
+            return false;
+          }
+          return true;
+        })
+        .map(repo => ({
+          ...repo,
+          // Sanitizar strings antes de armazenar
+          name: sanitizeString(repo.name),
+          description: sanitizeString(repo.description),
+          language: sanitizeString(repo.language),
+        }));
+
+      if (validRepos.length === 0) {
+        throw new Error('Nenhum repositório válido encontrado');
+      }
+
+      setProjects(validRepos);
+      setError(null);
+
     } catch (error) {
       console.error("Erro ao buscar repositórios:", error);
+      setError("Não foi possível carregar os projetos. Tente novamente mais tarde.");
+      setProjects([]);
     } finally {
       setLoading(false);
     }
@@ -48,13 +116,36 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* Projects Grid */}
-        {loading ? (
+        {/* Loading State */}
+        {loading && (
           <div className={styles.loadingContainer}>
             <div className={styles.spinner}></div>
             <p className={styles.loadingText}>Carregando projetos...</p>
           </div>
-        ) : (
+        )}
+
+        {/* Error State */}
+        {!loading && error && (
+          <div className={styles.errorContainer}>
+            <div className={styles.errorIcon}>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <p className={styles.errorText}>{error}</p>
+            <button
+              onClick={fetchUserData}
+              className={styles.retryButton}
+            >
+              Tentar novamente
+            </button>
+          </div>
+        )}
+
+        {/* Projects Grid */}
+        {!loading && !error && projects.length > 0 && (
           <div className={styles.projectsGrid}>
             {projects.map((repo, index) => (
               <a
@@ -68,24 +159,24 @@ export default function Projects() {
                 {/* Card Header */}
                 <div className={styles.cardHeader}>
                   <div className={styles.iconFolder}>
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="currentColor" 
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
                       strokeWidth="2"
                     >
                       <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
                     </svg>
                   </div>
                   <div className={styles.iconExternal}>
-                    <svg 
-                      width="20" 
-                      height="20" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="currentColor" 
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
                       strokeWidth="2"
                     >
                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -140,11 +231,11 @@ export default function Projects() {
         )}
 
         {/* GitHub Link */}
-        {!loading && projects.length > 0 && (
+        {!loading && !error && projects.length > 0 && (
           <div className={styles.viewMoreContainer}>
-            <a 
-              href="https://github.com/BrunoCharnock" 
-              target="_blank" 
+            <a
+              href="https://github.com/BrunoCharnock"
+              target="_blank"
               rel="noopener noreferrer"
               className={styles.viewMoreLink}
             >

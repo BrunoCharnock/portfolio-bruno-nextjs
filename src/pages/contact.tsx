@@ -15,33 +15,52 @@ export default function Contact() {
 
   const sendEmail = async (formData: EmailTemplateProps) => {
     try {
-      if (formData.message.length < 10) {
+      // Validação client-side (UX rápido - não substitui validação server-side)
+      if (formData.message.trim().length < 10) {
         toast.warning("Sua mensagem precisa ter pelo menos 10 caracteres.");
         return;
       }
 
-      if (formData.name.length < 3) {
+      if (formData.name.trim().length < 3) {
         toast.warning("O nome precisa ter mais de 2 letras");
+        return;
+      }
+
+      if (!formData.email || !formData.email.includes('@')) {
+        toast.warning("Por favor, insira um email válido");
         return;
       }
 
       setIsSubmitting(true);
 
-      const res = await fetch("https://www.brunocharnock.com.br/api/send", {
+      // ✅ Usar URL relativa (remove necessidade de CORS)
+      const res = await fetch("/api/send", {
         method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(formData),
       });
 
+      const data = await res.json();
+
       if (res.status === 200) {
         reset();
-        toast.success("Email enviado com sucesso!");
+        toast.success(data.message || "Email enviado com sucesso!");
+      } else if (res.status === 429) {
+        // Rate limit excedido
+        const retryAfter = data.retryAfter || 'alguns';
+        toast.error(`${data.error}\nTente novamente em ${retryAfter} minutos.`);
+      } else if (res.status === 400) {
+        // Erro de validação
+        toast.error(data.error || "Dados inválidos. Verifique os campos e tente novamente.");
       } else {
-        toast.error("Não foi possível enviar o email.");
-        console.log(res);
+        // Outros erros
+        toast.error(data.error || "Não foi possível enviar o email.");
       }
     } catch (err) {
-      toast.error("Não foi possível enviar o email.");
-      console.log(err);
+      toast.error("Erro de conexão. Verifique sua internet e tente novamente.");
+      console.error('Erro ao enviar email:', err);
     } finally {
       setIsSubmitting(false);
     }

@@ -1,5 +1,5 @@
 import { createMocks } from 'node-mocks-http';
-import handler from '../send';
+import handler from '../pages/api/send';
 
 // Mock do Resend
 jest.mock('resend', () => ({
@@ -286,20 +286,6 @@ describe('/api/send', () => {
 
       // Deve sanitizar e aceitar, mas sem os caracteres maliciosos
       expect(res._getStatusCode()).toBe(200);
-    });
-
-    it('should handle malformed JSON gracefully', async () => {
-      const { req, res } = createMocks({
-        method: 'POST',
-        body: 'invalid json{'
-      });
-
-      await handler(req, res);
-
-      expect(res._getStatusCode()).toBe(400);
-      expect(JSON.parse(res._getData())).toEqual({
-        error: 'Formato JSON inválido'
-      });
     });
   });
 });

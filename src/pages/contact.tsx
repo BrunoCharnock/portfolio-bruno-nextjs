@@ -15,7 +15,6 @@ export default function Contact() {
 
   const sendEmail = async (formData: EmailTemplateProps) => {
     try {
-      // Validação client-side (UX rápido - não substitui validação server-side)
       if (formData.message.trim().length < 10) {
         toast.warning("Sua mensagem precisa ter pelo menos 10 caracteres.");
         return;
@@ -33,7 +32,6 @@ export default function Contact() {
 
       setIsSubmitting(true);
 
-      // ✅ Usar URL relativa (remove necessidade de CORS)
       const res = await fetch("/api/send", {
         method: "POST",
         headers: {
@@ -48,14 +46,11 @@ export default function Contact() {
         reset();
         toast.success(data.message || "Email enviado com sucesso!");
       } else if (res.status === 429) {
-        // Rate limit excedido
         const retryAfter = data.retryAfter || 'alguns';
         toast.error(`${data.error}\nTente novamente em ${retryAfter} minutos.`);
       } else if (res.status === 400) {
-        // Erro de validação
         toast.error(data.error || "Dados inválidos. Verifique os campos e tente novamente.");
       } else {
-        // Outros erros
         toast.error(data.error || "Não foi possível enviar o email.");
       }
     } catch (err) {

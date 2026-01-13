@@ -1,4 +1,5 @@
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import Projects from '../src/pages/projects';
 
 // Mock do react-intersection-observer

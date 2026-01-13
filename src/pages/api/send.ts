@@ -94,6 +94,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
     }
 
+    // Validar variáveis de ambiente críticas
+    if (!process.env.RESEND_API_KEY) {
+      console.error('[API /send] RESEND_API_KEY não configurada');
+      return res.status(500).json({
+        error: "Configuração do servidor incompleta. Entre em contato com o administrador."
+      });
+    }
+
     const response = await resend.emails.send({
       from: process.env.EMAIL_FROM || "onboarding@resend.dev",
       to: process.env.CONTACT_EMAIL || "bruno.ccharnock@gmail.com",
@@ -111,12 +119,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         id: response.data.id
       });
     } else if (response && response.error) {
-      console.error('[API /send] Erro Resend:', response.error);
+      console.error('[API /send] Erro Resend:', JSON.stringify(response.error, null, 2));
       return res.status(500).json({
-        error: "Erro ao enviar email. Tente novamente mais tarde."
+        error: "Erro ao enviar email. Tente novamente mais tarde.",
+        details: process.env.NODE_ENV === 'development' ? response.error : undefined
       });
     } else {
-      console.error('[API /send] Resend retornou resposta inesperada:', response);
+      console.error('[API /send] Resend retornou resposta inesperada:', JSON.stringify(response, null, 2));
       return res.status(500).json({
         error: "Erro ao enviar email. Tente novamente mais tarde."
       });

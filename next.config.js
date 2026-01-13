@@ -13,11 +13,11 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",  // Apenas recursos do próprio domínio por padrão
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline'",  // Scripts (Next.js precisa de unsafe-eval)
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://static.cloudflareinsights.com",  // Scripts (Next.js precisa de unsafe-eval)
               "style-src 'self' 'unsafe-inline'",  // Estilos inline (Tailwind CSS precisa)
               "img-src 'self' data: https:",  // Imagens do próprio site, data URIs, e HTTPS externo
               "font-src 'self' data:",  // Fontes do próprio site e data URIs
-              "connect-src 'self' https://api.github.com",  // APIs permitidas
+              "connect-src 'self' https://api.github.com https://cloudflareinsights.com",  // APIs permitidas
               "frame-ancestors 'none'",  // Não permitir iframe
               "base-uri 'self'",  // Prevenir sequestro de base tag
               "form-action 'self'",  // Formulários só podem enviar para próprio domínio

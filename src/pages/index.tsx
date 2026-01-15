@@ -6,16 +6,12 @@ import Footer from "@/pages/footer";
 import { Inter } from "next/font/google";
 import { useEffect, useRef } from "react";
 import Projects from "./projects";
-import SnakeGame from "@/components/SnakeGame";
-
 const inter = Inter({ subsets: ["latin"] });
-
 
 export default function Home(props: any) {
   return (
     <>
       <Navbar />
-      <SnakeGame />
       <div className="body">
         <div className="wrapper">
           <LandingPage />

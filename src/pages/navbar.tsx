@@ -39,6 +39,7 @@ export default function Navbar() {
                   height={30}
                   width={30}
                   className={styles.navlogo}
+                  style={{ height: 'auto', width: '30px' }}
                 />
               </div>
             </div>

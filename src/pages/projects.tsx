@@ -74,6 +74,10 @@ export default function Projects() {
             console.warn('Repositório com estrutura inválida ignorado:', repo?.name || 'unknown');
             return false;
           }
+          // Ignorar repositório de README do perfil (tem o mesmo nome do usuário)
+          if (repo.name === 'BrunoCharnock') {
+            return false;
+          }
           return true;
         })
         .map(repo => ({

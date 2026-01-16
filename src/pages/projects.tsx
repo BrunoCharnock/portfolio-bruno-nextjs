@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from "@/hooks/useTranslation";
 import styles from "@/styles/projects.module.css";
 
 interface IProject {
@@ -12,7 +13,6 @@ interface IProject {
   forks_count: number;
 }
 
-// Função para sanitizar strings e prevenir XSS
 function sanitizeString(str: string | null | undefined): string {
   if (!str) return '';
 
@@ -25,19 +25,17 @@ function sanitizeString(str: string | null | undefined): string {
     .trim();
 }
 
-// Função para validar estrutura de um repositório
-function isValidRepository(obj: any): obj is IProject {
+function isValidRepository(obj: unknown): obj is IProject {
   return (
-    obj &&
+    obj !== null &&
     typeof obj === 'object' &&
-    typeof obj.id === 'number' &&
-    typeof obj.name === 'string' &&
-    typeof obj.html_url === 'string' &&
-    (obj.description === null || typeof obj.description === 'string') &&
-    (obj.language === null || typeof obj.language === 'string') &&
-    typeof obj.stargazers_count === 'number' &&
-    typeof obj.forks_count === 'number' &&
-    // Validar formato de URL
+    'id' in obj && typeof obj.id === 'number' &&
+    'name' in obj && typeof obj.name === 'string' &&
+    'html_url' in obj && typeof obj.html_url === 'string' &&
+    'description' in obj && (obj.description === null || typeof obj.description === 'string') &&
+    'language' in obj && (obj.language === null || typeof obj.language === 'string') &&
+    'stargazers_count' in obj && typeof obj.stargazers_count === 'number' &&
+    'forks_count' in obj && typeof obj.forks_count === 'number' &&
     obj.html_url.startsWith('https://github.com/')
   );
 }
@@ -50,31 +48,29 @@ export default function Projects() {
     threshold: 0.1,
     triggerOnce: true
   });
+  const { t } = useTranslation();
 
-  const fetchUserData = async () => {
+  const fetchUserData = useCallback(async () => {
+    setLoading(true);
     try {
       const response = await fetch("https://api.github.com/users/BrunoCharnock/repos");
 
-      // Validar status HTTP
       if (!response.ok) {
-        throw new Error(`GitHub API retornou status ${response.status}`);
+        throw new Error(`GitHub API returned status ${response.status}`);
       }
 
       const data = await response.json();
 
-      // Validar que é um array
       if (!Array.isArray(data)) {
-        throw new Error('Resposta da API não é um array');
+        throw new Error('API response is not an array');
       }
 
-      // Filtrar e validar repositórios
       const validRepos = data
         .filter((repo): repo is IProject => {
           if (!isValidRepository(repo)) {
-            console.warn('Repositório com estrutura inválida ignorado:', repo?.name || 'unknown');
+            console.warn('Repository with invalid structure ignored:', (repo as { name?: string })?.name || 'unknown');
             return false;
           }
-          // Ignorar repositório de README do perfil (tem o mesmo nome do usuário)
           if (repo.name === 'BrunoCharnock') {
             return false;
           }
@@ -82,41 +78,40 @@ export default function Projects() {
         })
         .map(repo => ({
           ...repo,
-          // Sanitizar strings antes de armazenar
           name: sanitizeString(repo.name),
           description: sanitizeString(repo.description),
           language: sanitizeString(repo.language),
         }));
 
       if (validRepos.length === 0) {
-        throw new Error('Nenhum repositório válido encontrado');
+        throw new Error(t('projects.errorNoRepos'));
       }
 
       setProjects(validRepos);
       setError(null);
 
-    } catch (error) {
-      console.error("Erro ao buscar repositórios:", error);
-      setError("Não foi possível carregar os projetos. Tente novamente mais tarde.");
+    } catch (err) {
+      console.error("Error fetching repositories:", err);
+      setError(t('projects.errorLoad'));
       setProjects([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, [t]);
 
   useEffect(() => {
     fetchUserData();
-  }, []);
+  }, [fetchUserData]);
 
   return (
     <section id="projetos" className={styles.projectsSection} ref={ref}>
       <div className={styles.container}>
         {/* Heading */}
         <div className={`${styles.headingWrapper} ${inView ? styles.fadeIn : ''}`}>
-          <h2 className={styles.heading}>Projetos</h2>
+          <h2 className={styles.heading}>{t('projects.title')}</h2>
           <div className={styles.headingLine}></div>
           <p className={styles.subheading}>
-            Alguns dos meus projetos open-source no GitHub
+            {t('projects.subtitle')}
           </p>
         </div>
 
@@ -124,7 +119,7 @@ export default function Projects() {
         {loading && (
           <div className={styles.loadingContainer}>
             <div className={styles.spinner}></div>
-            <p className={styles.loadingText}>Carregando projetos...</p>
+            <p className={styles.loadingText}>{t('projects.loading')}</p>
           </div>
         )}
 
@@ -143,7 +138,7 @@ export default function Projects() {
               onClick={fetchUserData}
               className={styles.retryButton}
             >
-              Tentar novamente
+              {t('projects.retry')}
             </button>
           </div>
         )}
@@ -194,7 +189,7 @@ export default function Projects() {
                 <div className={styles.cardContent}>
                   <h3 className={styles.projectTitle}>{repo.name}</h3>
                   <p className={styles.projectDescription}>
-                    {repo.description || "Sem descrição disponível"}
+                    {repo.description || t('projects.noDescription')}
                   </p>
                 </div>
 
@@ -243,7 +238,7 @@ export default function Projects() {
               rel="noopener noreferrer"
               className={styles.viewMoreLink}
             >
-              Ver mais no GitHub
+              {t('projects.viewMore')}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>

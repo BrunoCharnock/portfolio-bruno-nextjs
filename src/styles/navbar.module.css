@@ -167,13 +167,60 @@
   transform: scaleX(1);
 }
 
+/* Language Switcher */
+.languageSwitcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: rgb(226, 232, 240);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-left: 0.5rem;
+}
+
+.languageSwitcher:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(168, 85, 247, 0.5);
+  color: rgb(255, 255, 255);
+}
+
+.languageFlag {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.languageCode {
+  font-family: inherit;
+  letter-spacing: 0.5px;
+}
+
+/* Animation delay for language switcher (5th item) */
+.navitem:nth-child(5) {
+  transition-delay: 0.4s;
+}
+
 /* Mobile centering */
 @media (max-width: 768px) {
   .navbarNav {
     justify-content: center;
   }
-  
+
   .navitem:first-child {
     margin-right: 0;
+  }
+
+  .languageSwitcher {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .languageFlag {
+    font-size: 14px;
   }
 }

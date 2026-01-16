@@ -1,11 +1,14 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import terminalIcon from "../components/images/svg/terminal-branco.svg";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useTranslation } from "@/hooks/useTranslation";
 import styles from "@/styles/navbar.module.css";
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setIsVisible(true);
@@ -20,7 +23,7 @@ export default function Navbar() {
 
   const handleLogoClick = () => {
   document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0; // Para Safari
+  document.body.scrollTop = 0;
   };
 
   return (
@@ -48,20 +51,25 @@ export default function Navbar() {
           {/* Navigation Links */}
           <li className={`${styles.navitem} ${isVisible ? styles.navitemVisible : ''}`}>
             <a href="#sobre" className={styles.navlink}>
-              Sobre
+              {t('nav.about')}
             </a>
           </li>
 
           <li className={`${styles.navitem} ${isVisible ? styles.navitemVisible : ''}`}>
             <a href="#projetos" className={styles.navlink}>
-              Projetos
+              {t('nav.projects')}
             </a>
           </li>
 
           <li className={`${styles.navitem} ${isVisible ? styles.navitemVisible : ''}`}>
             <a href="#contato" className={styles.navlink}>
-              Contato
+              {t('nav.contact')}
             </a>
+          </li>
+
+          {/* Language Switcher */}
+          <li className={`${styles.navitem} ${isVisible ? styles.navitemVisible : ''}`}>
+            <LanguageSwitcher />
           </li>
         </ul>
       </div>

@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "landing": {
+    "greeting": "Hi, my name is",
+    "tagline": "I develop",
+    "highlight": "solutions",
+    "description": ".NET Developer passionate about software engineering and real challenges. With strong expertise in C#, .NET Core, APIs and architecture patterns, I work at",
+    "company": "Teleperformance",
+    "descriptionEnd": "building scalable and efficient solutions that make life easier for people and businesses.",
+    "ctaProjects": "View Projects",
+    "ctaContact": "Get in Touch"
+  },
+  "about": {
+    "title": "About me",
+    "skillsTitle": "Technologies & Tools",
+    "paragraph1": "Hello! I'm a software developer focused on .NET with hands-on experience building and evolving production systems. I enjoy working on solutions that solve real problems, always prioritizing clean code, well-thought-out architecture, and concrete impact for users.",
+    "paragraph2": "My programming journey started from my interest in modding and developing games, which led me to study Game Design. It was during this process that I discovered software development went far beyond games, and that creating well-structured, scalable, and efficient systems was something that truly motivated me.",
+    "paragraph3": "Currently, I work at Teleperformance, developing and maintaining .NET applications used by thousands of users. I work both on creating new features and on maintaining and modernizing legacy systems, as well as API integrations and participating in technical decisions focused on scalability, performance, and maintainability.",
+    "paragraph4": "I'm a tech enthusiast who loves understanding how things work under the hood. That's why, beyond professional development, I'm interested in infrastructure, automation, and homelab experiments, always seeking to deepen my technical knowledge and apply best practices that make software more reliable and sustainable over time.",
+    "skills": {
+      "frontend": "HTML5, CSS3, SCSS, JavaScript (ES6+), TypeScript, Angular, React, Next.js, Tailwind CSS.",
+      "backend": "C#, .NET Framework, .NET Core / .NET, ASP.NET Core (Web API), Entity Framework, Entity Framework Core, REST APIs, microservices, system integration.",
+      "database": "SQL Server, data modeling, SQL queries and optimization.",
+      "tools": "Git, GitLab, Docker, Linux, Nginx, Cloudflare, homelab (self-hosting, automation and services), Swagger / OpenAPI, Jira, Postman, API integration and consumption, clean code and best practices."
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Some of my open-source projects on GitHub",
+    "loading": "Loading projects...",
+    "noDescription": "No description available",
+    "retry": "Try again",
+    "viewMore": "View more on GitHub",
+    "errorLoad": "Unable to load projects. Please try again later.",
+    "errorNoRepos": "No valid repositories found"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Have a project in mind or just want to chat? My inbox is always open!",
+    "workTogether": "Let's work together?",
+    "infoText": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Fill out the form and I'll get back to you as soon as possible.",
+    "labelName": "Your name",
+    "labelEmail": "Your email",
+    "labelMessage": "Message",
+    "placeholderName": "John Doe",
+    "placeholderEmail": "john@example.com",
+    "placeholderMessage": "Tell me about your project or idea...",
+    "submit": "Send message",
+    "submitting": "Sending..."
+  },
+  "footer": {
+    "tagline": ".NET Developer passionate about building elegant and scalable solutions.",
+    "navigation": "Navigation",
+    "contact": "Contact",
+    "location": "São Paulo, Brazil",
+    "copyright": "All rights reserved.",
+    "builtWith": "Made with",
+    "using": "using Next.js & TypeScript"
+  },
+  "validation": {
+    "messageMin": "Your message must have at least 10 characters.",
+    "nameMin": "Name must have more than 2 letters",
+    "emailInvalid": "Please enter a valid email",
+    "emailSuccess": "Email sent successfully!",
+    "emailError": "Could not send email.",
+    "connectionError": "Connection error. Check your internet and try again.",
+    "rateLimitError": "Too many attempts. Try again in",
+    "minutes": "minutes",
+    "invalidData": "Invalid data. Please check the fields and try again."
+  }
+}

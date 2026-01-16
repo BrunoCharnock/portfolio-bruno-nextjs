@@ -1,7 +1,9 @@
+import { useTranslation } from "@/hooks/useTranslation";
 import styles from "@/styles/footer.module.css";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
 
   const socialLinks = [
     {
@@ -35,9 +37,9 @@ export default function Footer() {
   ];
 
   const quickLinks = [
-    { name: "Sobre", href: "#sobre" },
-    { name: "Projetos", href: "#projetos" },
-    { name: "Contato", href: "#contato" }
+    { name: t('nav.about'), href: "#sobre" },
+    { name: t('nav.projects'), href: "#projetos" },
+    { name: t('nav.contact'), href: "#contato" }
   ];
 
   return (
@@ -57,7 +59,7 @@ export default function Footer() {
               <span className={styles.logoText}>Bruno Charnock</span>
             </div>
             <p className={styles.tagline}>
-              Desenvolvedor .NET apaixonado por criar soluções elegantes e escaláveis.
+              {t('footer.tagline')}
             </p>
             {/* Social Links */}
             <div className={styles.socialLinks}>
@@ -78,10 +80,10 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className={styles.linksSection}>
-            <h4 className={styles.linksHeading}>Navegação</h4>
+            <h4 className={styles.linksHeading}>{t('footer.navigation')}</h4>
             <ul className={styles.linksList}>
               {quickLinks.map((link) => (
-                <li key={link.name}>
+                <li key={link.href}>
                   <a href={link.href} className={styles.link}>
                     {link.name}
                   </a>
@@ -92,7 +94,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className={styles.contactSection}>
-            <h4 className={styles.linksHeading}>Contato</h4>
+            <h4 className={styles.linksHeading}>{t('footer.contact')}</h4>
             <ul className={styles.contactList}>
               <li className={styles.contactItem}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -108,7 +110,7 @@ export default function Footer() {
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span className={styles.contactText}>São Paulo, Brasil</span>
+                <span className={styles.contactText}>{t('footer.location')}</span>
               </li>
             </ul>
           </div>
@@ -120,12 +122,12 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className={styles.bottomSection}>
           <p className={styles.copyright}>
-            © {currentYear} Bruno Charnock. Todos os direitos reservados.
+            © {currentYear} Bruno Charnock. {t('footer.copyright')}
           </p>
           <p className={styles.builtWith}>
-            Feito com{" "}
+            {t('footer.builtWith')}{" "}
             <span className={styles.heart}>♥</span>{" "}
-            usando Next.js & TypeScript
+            {t('footer.using')}
           </p>
         </div>
       </div>

@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from '@/hooks/useTranslation';
 import styles from '@/styles/landingpage.module.css';
 
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setIsVisible(true);
@@ -12,11 +14,11 @@ export default function LandingPage() {
     <section className={styles.landingpage}>
       <div className={styles.container}>
         <div className={`${styles.content} ${isVisible ? styles.contentVisible : styles.contentHidden}`}>
-          
+
           {/* Introduction tag */}
           <div className={styles.introductionTag}>
             <div className={styles.pulseDot}></div>
-            <span className={styles.introduction}>Olá, me chamo</span>
+            <span className={styles.introduction}>{t('landing.greeting')}</span>
           </div>
 
           {/* Name with gradient */}
@@ -27,10 +29,10 @@ export default function LandingPage() {
           {/* Typing effect subtitle */}
           <div className={styles.subtitleContainer}>
             <h2 className={styles.typingdemo}>
-              Eu desenvolvo{' '}
+              {t('landing.tagline')}{' '}
               <span className={styles.highlight}>
                 <span className={styles.highlightText}>
-                  soluções
+                  {t('landing.highlight')}
                 </span>
                 <span className={styles.highlightUnderline}></span>
               </span>
@@ -40,26 +42,25 @@ export default function LandingPage() {
 
           {/* Description */}
           <p className={styles.description}>
-            Desenvolvedor .NET apaixonado por engenharia de software e desafios reais.
-             Com forte domínio de C#, .NET Core, APIs e padrões de arquitetura, atuo na{' '}
+            {t('landing.description')}{' '}
             <a
               href="https://www.teleperformance.com/pt-br/locations/brazil-site/brasil/"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.joblink}
             >
-            Teleperformance 
+            {t('landing.company')}
             </a>{' '}
-            construindo soluções escaláveis e eficientes que facilitam a vida das pessoas e das empresas.
+            {t('landing.descriptionEnd')}
           </p>
 
           {/* CTA Buttons */}
           <div className={styles.ctaButtons}>
             <a href="#projetos" className={styles.btnPrimary}>
-              Ver Projetos
+              {t('landing.ctaProjects')}
             </a>
             <a href="#contato" className={styles.btnSecondary}>
-              Entre em Contato
+              {t('landing.ctaContact')}
             </a>
           </div>
         </div>

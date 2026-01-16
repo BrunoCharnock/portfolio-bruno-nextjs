@@ -2,31 +2,33 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from "@/hooks/useTranslation";
 import { EmailTemplateProps } from "@/components/email-template";
 import styles from "@/styles/contact.module.css";
 
 export default function Contact() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0.2,
     triggerOnce: true
   });
+  const { t } = useTranslation();
 
   const sendEmail = async (formData: EmailTemplateProps) => {
     try {
       if (formData.message.trim().length < 10) {
-        toast.warning("Sua mensagem precisa ter pelo menos 10 caracteres.");
+        toast.warning(t('validation.messageMin'));
         return;
       }
 
       if (formData.name.trim().length < 3) {
-        toast.warning("O nome precisa ter mais de 2 letras");
+        toast.warning(t('validation.nameMin'));
         return;
       }
 
       if (!formData.email || !formData.email.includes('@')) {
-        toast.warning("Por favor, insira um email válido");
+        toast.warning(t('validation.emailInvalid'));
         return;
       }
 
@@ -44,18 +46,18 @@ export default function Contact() {
 
       if (res.status === 200) {
         reset();
-        toast.success(data.message || "Email enviado com sucesso!");
+        toast.success(data.message || t('validation.emailSuccess'));
       } else if (res.status === 429) {
-        const retryAfter = data.retryAfter || 'alguns';
-        toast.error(`${data.error}\nTente novamente em ${retryAfter} minutos.`);
+        const retryAfter = data.retryAfter || '?';
+        toast.error(`${t('validation.rateLimitError')} ${retryAfter} ${t('validation.minutes')}.`);
       } else if (res.status === 400) {
-        toast.error(data.error || "Dados inválidos. Verifique os campos e tente novamente.");
+        toast.error(data.error || t('validation.invalidData'));
       } else {
-        toast.error(data.error || "Não foi possível enviar o email.");
+        toast.error(data.error || t('validation.emailError'));
       }
     } catch (err) {
-      toast.error("Erro de conexão. Verifique sua internet e tente novamente.");
-      console.error('Erro ao enviar email:', err);
+      toast.error(t('validation.connectionError'));
+      console.error('Error sending email:', err);
     } finally {
       setIsSubmitting(false);
     }
@@ -66,10 +68,10 @@ export default function Contact() {
       <div className={styles.container}>
         {/* Heading */}
         <div className={`${styles.headingWrapper} ${inView ? styles.fadeIn : ''}`}>
-          <h2 className={styles.heading}>Entre em Contato</h2>
+          <h2 className={styles.heading}>{t('contact.title')}</h2>
           <div className={styles.headingLine}></div>
           <p className={styles.subheading}>
-            Tem algum projeto em mente ou quer apenas conversar? Minha caixa de entrada está sempre aberta!
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -77,11 +79,9 @@ export default function Contact() {
         <div className={styles.contentGrid}>
           {/* Left Side - Info */}
           <div className={`${styles.infoContainer} ${inView ? styles.slideInLeft : ''}`}>
-            <h3 className={styles.infoHeading}>Vamos trabalhar juntos?</h3>
+            <h3 className={styles.infoHeading}>{t('contact.workTogether')}</h3>
             <p className={styles.infoText}>
-              Estou sempre aberto a discutir novos projetos, ideias criativas ou oportunidades 
-              para fazer parte da sua visão. Preencha o formulário ao lado e entrarei em contato 
-              o mais breve possível.
+              {t('contact.infoText')}
             </p>
 
             {/* Contact Info Cards */}
@@ -124,13 +124,13 @@ export default function Contact() {
               {/* Name Input */}
               <div className={styles.formGroup}>
                 <label className={styles.label}>
-                  Seu nome
+                  {t('contact.labelName')}
                   <span className={styles.required}>*</span>
                 </label>
                 <input
                   {...register("name", { required: true, minLength: 3 })}
                   className={styles.input}
-                  placeholder="João Silva"
+                  placeholder={t('contact.placeholderName')}
                   disabled={isSubmitting}
                 />
               </div>
@@ -138,14 +138,14 @@ export default function Contact() {
               {/* Email Input */}
               <div className={styles.formGroup}>
                 <label className={styles.label}>
-                  Seu email
+                  {t('contact.labelEmail')}
                   <span className={styles.required}>*</span>
                 </label>
                 <input
                   {...register("email", { required: true })}
                   type="email"
                   className={styles.input}
-                  placeholder="joao@exemplo.com"
+                  placeholder={t('contact.placeholderEmail')}
                   disabled={isSubmitting}
                 />
               </div>
@@ -153,13 +153,13 @@ export default function Contact() {
               {/* Message Input */}
               <div className={styles.formGroup}>
                 <label className={styles.label}>
-                  Mensagem
+                  {t('contact.labelMessage')}
                   <span className={styles.required}>*</span>
                 </label>
                 <textarea
                   {...register("message", { required: true, minLength: 10 })}
                   className={`${styles.input} ${styles.textarea}`}
-                  placeholder="Conte-me sobre seu projeto ou ideia..."
+                  placeholder={t('contact.placeholderMessage')}
                   rows={5}
                   disabled={isSubmitting}
                 />
@@ -174,11 +174,11 @@ export default function Contact() {
                 {isSubmitting ? (
                   <>
                     <span className={styles.spinner}></span>
-                    Enviando...
+                    {t('contact.submitting')}
                   </>
                 ) : (
                   <>
-                    Enviar mensagem
+                    {t('contact.submit')}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <line x1="22" y1="2" x2="11" y2="13"></line>
                       <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>

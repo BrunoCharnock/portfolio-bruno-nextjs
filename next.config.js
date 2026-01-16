@@ -2,6 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  // Configuração i18n nativa do Next.js
+  i18n: {
+    locales: ['pt-br', 'en'],
+    defaultLocale: 'pt-br',
+  },
+
   async headers() {
     return [
       {

@@ -1,0 +1,75 @@
+{
+  "nav": {
+    "about": "Sobre",
+    "projects": "Projetos",
+    "contact": "Contato"
+  },
+  "landing": {
+    "greeting": "Olá, me chamo",
+    "tagline": "Eu desenvolvo",
+    "highlight": "soluções",
+    "description": "Desenvolvedor .NET apaixonado por engenharia de software e desafios reais. Com forte domínio de C#, .NET Core, APIs e padrões de arquitetura, atuo na",
+    "company": "Teleperformance",
+    "descriptionEnd": "construindo soluções escaláveis e eficientes que facilitam a vida das pessoas e das empresas.",
+    "ctaProjects": "Ver Projetos",
+    "ctaContact": "Entre em Contato"
+  },
+  "about": {
+    "title": "Sobre mim",
+    "skillsTitle": "Tecnologias & Ferramentas",
+    "paragraph1": "Olá! Sou desenvolvedor de software com foco em .NET e experiência prática na construção e evolução de sistemas utilizados em produção. Gosto de trabalhar em soluções que resolvem problemas reais, sempre priorizando código limpo, arquitetura bem pensada e impacto concreto para os usuários.",
+    "paragraph2": "Minha jornada na programação começou a partir do interesse em modificar e desenvolver jogos, o que me levou a cursar Game Design. Foi nesse processo que descobri que o desenvolvimento de software ia muito além dos jogos e que criar sistemas bem estruturados, escaláveis e eficientes era algo que me motivava de verdade.",
+    "paragraph3": "Atualmente atuo na Teleperformance, desenvolvendo e mantendo aplicações .NET utilizadas por milhares de usuários. Trabalho tanto na criação de novas funcionalidades quanto na manutenção e modernização de sistemas legados, além de integrações via APIs e participação em decisões técnicas voltadas à escalabilidade, desempenho e facilidade de manutenção.",
+    "paragraph4": "Sou entusiasta de tecnologia e gosto de entender como as coisas funcionam por trás dos panos. Por isso, além do desenvolvimento profissional, me interesso por infraestrutura, automação e experimentações em homelab, sempre buscando aprofundar meu conhecimento técnico e aplicar boas práticas que tornem o software mais confiável e sustentável ao longo do tempo.",
+    "skills": {
+      "frontend": "HTML5, CSS3, SCSS, JavaScript (ES6+), TypeScript, Angular, React, Next.js, Tailwind CSS.",
+      "backend": "C#, .NET Framework, .NET Core / .NET, ASP.NET Core (Web API), Entity Framework, Entity Framework Core, APIs REST, microsserviços, integração entre sistemas.",
+      "database": "SQL Server, modelagem de dados, consultas e otimização SQL.",
+      "tools": "Git, GitLab, Docker, Linux, Nginx, Cloudflare, homelab (self-hosting, automação e serviços), Swagger / OpenAPI, Jira, Postman, integração e consumo de APIs, clean code e boas práticas."
+    }
+  },
+  "projects": {
+    "title": "Projetos",
+    "subtitle": "Alguns dos meus projetos open-source no GitHub",
+    "loading": "Carregando projetos...",
+    "noDescription": "Sem descrição disponível",
+    "retry": "Tentar novamente",
+    "viewMore": "Ver mais no GitHub",
+    "errorLoad": "Não foi possível carregar os projetos. Tente novamente mais tarde.",
+    "errorNoRepos": "Nenhum repositório válido encontrado"
+  },
+  "contact": {
+    "title": "Entre em Contato",
+    "subtitle": "Tem algum projeto em mente ou quer apenas conversar? Minha caixa de entrada está sempre aberta!",
+    "workTogether": "Vamos trabalhar juntos?",
+    "infoText": "Estou sempre aberto a discutir novos projetos, ideias criativas ou oportunidades para fazer parte da sua visão. Preencha o formulário ao lado e entrarei em contato o mais breve possível.",
+    "labelName": "Seu nome",
+    "labelEmail": "Seu email",
+    "labelMessage": "Mensagem",
+    "placeholderName": "João Silva",
+    "placeholderEmail": "joao@exemplo.com",
+    "placeholderMessage": "Conte-me sobre seu projeto ou ideia...",
+    "submit": "Enviar mensagem",
+    "submitting": "Enviando..."
+  },
+  "footer": {
+    "tagline": "Desenvolvedor .NET apaixonado por criar soluções elegantes e escaláveis.",
+    "navigation": "Navegação",
+    "contact": "Contato",
+    "location": "São Paulo, Brasil",
+    "copyright": "Todos os direitos reservados.",
+    "builtWith": "Feito com",
+    "using": "usando Next.js & TypeScript"
+  },
+  "validation": {
+    "messageMin": "Sua mensagem precisa ter pelo menos 10 caracteres.",
+    "nameMin": "O nome precisa ter mais de 2 letras",
+    "emailInvalid": "Por favor, insira um email válido",
+    "emailSuccess": "Email enviado com sucesso!",
+    "emailError": "Não foi possível enviar o email.",
+    "connectionError": "Erro de conexão. Verifique sua internet e tente novamente.",
+    "rateLimitError": "Muitas tentativas. Tente novamente em",
+    "minutes": "minutos",
+    "invalidData": "Dados inválidos. Verifique os campos e tente novamente."
+  }
+}

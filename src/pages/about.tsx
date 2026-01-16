@@ -1,4 +1,5 @@
 import { useInView } from "react-intersection-observer";
+import { useTranslation } from "@/hooks/useTranslation";
 import styles from "@/styles/about.module.css";
 
 export default function About() {
@@ -6,23 +7,24 @@ export default function About() {
     threshold: 0.2,
     triggerOnce: true
   });
+  const { t } = useTranslation();
 
   const skillSections = [
     {
       category: "Front-end",
-      technologies: "HTML5, CSS3, SCSS, JavaScript (ES6+), TypeScript, Angular, React, Next.js, Tailwind CSS."
+      technologies: t('about.skills.frontend')
     },
     {
       category: "Back-end",
-      technologies: "C#, .NET Framework, .NET Core / .NET, ASP.NET Core (Web API), Entity Framework, Entity Framework Core, APIs REST, microsserviços, integração entre sistemas."
+      technologies: t('about.skills.backend')
     },
     {
       category: "Database",
-      technologies: "SQL Server, modelagem de dados, consultas e otimização SQL."
+      technologies: t('about.skills.database')
     },
     {
       category: "Tools & Others",
-      technologies: "Git, GitLab, Docker, Linux, Nginx, Cloudflare, homelab (self-hosting, automação e serviços), Swagger / OpenAPI, Jira, Postman, integração e consumo de APIs, clean code e boas práticas."
+      technologies: t('about.skills.tools')
     }
   ];
 
@@ -31,7 +33,7 @@ export default function About() {
       <div className={styles.container}>
         {/* Heading */}
         <div className={`${styles.headingWrapper} ${inView ? styles.fadeIn : ''}`}>
-          <h2 className={styles.heading}>Sobre mim</h2>
+          <h2 className={styles.heading}>{t('about.title')}</h2>
           <div className={styles.headingLine}></div>
         </div>
 
@@ -40,38 +42,26 @@ export default function About() {
           {/* Text Content */}
           <div className={`${styles.textContent} ${inView ? styles.slideInLeft : ''}`}>
             <p className={styles.paragraph}>
-              Olá! Sou desenvolvedor de software com foco em .NET e experiência prática na construção e evolução de sistemas 
-              utilizados em produção. Gosto de trabalhar em soluções que resolvem problemas reais, sempre priorizando 
-              código limpo, arquitetura bem pensada e impacto concreto para os usuários.
+              {t('about.paragraph1')}
             </p>
             <p className={styles.paragraph}>
-              Minha jornada na programação começou a partir do interesse em modificar e desenvolver jogos, o que me levou a cursar 
-              Game Design. Foi nesse processo que descobri que o desenvolvimento de software ia muito além dos jogos e que 
-              criar sistemas bem estruturados, escaláveis e eficientes era algo que me motivava de verdade.
+              {t('about.paragraph2')}
             </p>
             <p className={styles.paragraph}>
-              Atualmente atuo na <span className={styles.highlight}>Teleperformance</span>, 
-              desenvolvendo e mantendo aplicações .NET utilizadas por milhares de usuários. 
-              Trabalho tanto na criação de novas funcionalidades quanto na manutenção e
-               modernização de sistemas legados, além de integrações via APIs e participação 
-               em decisões técnicas voltadas à escalabilidade, desempenho e facilidade de manutenção.
+              {t('about.paragraph3')}
             </p>
             <p className={styles.paragraph}>
-              Sou entusiasta de tecnologia e gosto de entender como as coisas funcionam por trás dos 
-              panos. Por isso, além do desenvolvimento profissional, me interesso por infraestrutura, 
-              automação e experimentações em homelab, sempre buscando aprofundar meu conhecimento 
-              técnico e aplicar boas práticas que tornem o software mais confiável e sustentável ao 
-              longo do tempo.
+              {t('about.paragraph4')}
             </p>
           </div>
 
           {/* Skills Sections */}
           <div className={`${styles.skillsContainer} ${inView ? styles.slideInRight : ''}`}>
-            <h3 className={styles.skillsHeading}>Tecnologias & Ferramentas</h3>
+            <h3 className={styles.skillsHeading}>{t('about.skillsTitle')}</h3>
             <div className={styles.skillsSections}>
               {skillSections.map((section, index) => (
-                <div 
-                  key={section.category} 
+                <div
+                  key={section.category}
                   className={styles.skillSection}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
